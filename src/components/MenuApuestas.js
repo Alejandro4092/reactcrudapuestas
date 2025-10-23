@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import logo from './../assets/images/logo.png'
 
 export default class MenuApuestas extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <div className='container-fluid'>
+            <a className="navbar-brand" href="#">
+               <img src={logo} style={{width: "60px"}}/>
+            </a>
+        </div>
                 <div className="container-fluid">
                     <NavLink className="navbar-brand" to="/">Home</NavLink>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
