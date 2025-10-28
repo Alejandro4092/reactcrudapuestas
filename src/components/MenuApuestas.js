@@ -1,8 +1,28 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from './../assets/images/logo.png'
+import axios from 'axios'
+import Global from '../Global'
 
 export default class MenuApuestas extends Component {
+    state = {
+        equipos: []
+    }
+
+    componentDidMount() {
+        this.loadEquipos();
+    }
+
+    loadEquipos = () => {
+        const url = Global.apiFutbol;
+        // intentar obtener la lista de equipos desde la API
+        axios.get(url + 'api/equipos')
+            .then(res => {
+                this.setState({ equipos: res.data });
+            })
+
+    }
+
     render() {
         return (
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -21,16 +41,31 @@ export default class MenuApuestas extends Component {
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/">Home</NavLink>
+
                             </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/apuestas">Apuestas</NavLink>
+                            </li>
+
+
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                   Equipos
+                                    Equipos
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><NavLink className="dropdown-item" to="realmadrid">Real Madrid</NavLink></li>
-                                    <li><NavLink className="dropdown-item" to="barsa">Barsa</NavLink></li>
+                                    {
+                                        this.state.equipos.map((equipo, index) => {
+                                            const equipoId = equipo.idEquipo;
 
-                                    
+                                            return (
+                                                <li key={index} >
+                                                    <NavLink className="dropdown-item" to={"/equipos/" + (equipoId || '')}>
+                                                        {equipo.nombre}
+                                                    </NavLink>
+                                                </li>
+                                            )
+                                        })
+                                    }
                                 </ul>
                             </li>
                             <li className="nav-item">
