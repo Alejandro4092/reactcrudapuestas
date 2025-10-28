@@ -34,7 +34,7 @@ export default class Router extends Component {
           <Route exact path='/details/:idjugador' element={<DetallesJugador />} />
           <Route exact path='/apuestas' element={<Apuestas />} />
           <Route exact path='/createapuesta' element={<CreateApuesta />} />
-          {/* //eliminar apuesta en otro componente */}
+          {/* //eliminar apuesta en otro componente  solo pasando el id*/}
           {/* <Route path="/deleteapuesta/:idApuesta" element={<DeleteApuesta />} /> */}
 
 
